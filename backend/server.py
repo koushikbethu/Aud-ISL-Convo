@@ -14,7 +14,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Configuration
-ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://localhost:3000,https://aud-isl-convo-106d0tju5-koushiks-projects-460d124f.vercel.app,https://aud-isl-convo-git-main-koushiks-projects-460d124f.vercel.app,https://aud-isl-convo.vercel.app").split(",")
 HOST = os.getenv("HOST", "0.0.0.0")
 PORT = int(os.getenv("PORT", 8000))
 
@@ -26,11 +25,11 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
-# CORS Configuration - Allow frontend origins
+# CORS Configuration - Allow all origins for API accessibility
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
