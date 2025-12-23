@@ -3,6 +3,9 @@ uvicorn
 pydantic
 gunicorn
 flask
-gunicorn
 flask-cors
-
+numpy
+numpy>=1.26.0
+flask
+flask-cors
+gunicorn
