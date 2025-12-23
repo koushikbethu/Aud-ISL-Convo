@@ -66,7 +66,8 @@ function App() {
     if (!inputText) return
     try {
       setError('')
-      const response = await fetch('http://localhost:8000/process', {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+      const response = await fetch(`${API_URL}/process`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: inputText })
@@ -176,7 +177,7 @@ function App() {
                     <div className="relative group">
                       <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl opacity-20 group-hover:opacity-30 blur-lg transition duration-500"></div>
                       <img
-                        src={`http://localhost:8000${result.src}`}
+                        src={`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}${result.src}`}
                         alt={result.alt}
                         className="relative max-h-[350px] w-full object-contain rounded-xl shadow-sm z-10"
                       />
@@ -190,7 +191,7 @@ function App() {
                     <div className="flex flex-col items-center w-full">
                       <div className="relative w-full max-w-sm aspect-square bg-white rounded-2xl shadow-lg border border-gray-100 p-2 transform rotate-1 transition-transform">
                         <img
-                          src={`http://localhost:8000${result.data[currentImageIndex]}`}
+                          src={`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}${result.data[currentImageIndex]}`}
                           alt="Sign Language Letter"
                           className="w-full h-full object-cover rounded-xl"
                         />
