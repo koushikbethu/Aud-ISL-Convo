@@ -1,16 +1,104 @@
-# React + Vite
+# Audio to ISL - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Modern React + Vite + Tailwind CSS frontend for the Audio to Indian Sign Language converter.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🎙️ **Voice Input** - Speak directly using browser speech recognition
+- ⌨️ **Text Input** - Type text to convert
+- 🎞️ **ISL Animations** - View sign language GIFs for known phrases
+- 🔤 **Letter Spelling** - See individual letter signs for unknown words
+- 📱 **Responsive Design** - Works on desktop and mobile
+- 🔗 **API Health Check** - Real-time backend connection status
 
-## React Compiler
+## Quick Start
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
 
-## Expanding the ESLint configuration
+- Node.js 18+ 
+- Backend server running (see `../backend/`)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Installation
+
+```bash
+# Install dependencies
+npm install
+
+# Copy environment config (optional - uses defaults)
+copy env.example .env
+
+# Start development server
+npm run dev
+```
+
+Frontend will run at: **http://localhost:5173**
+
+### Environment Variables
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `VITE_API_URL` | `http://localhost:8000` | Backend API URL |
+
+## Project Structure
+
+```
+frontend/
+├── src/
+│   ├── App.jsx              # Main application component
+│   ├── main.jsx             # React entry point
+│   ├── index.css            # Global styles (Tailwind)
+│   ├── services/
+│   │   └── api.js           # API service layer
+│   └── hooks/
+│       └── useSpeechRecognition.js  # Speech recognition hook
+├── public/                   # Static assets
+├── vite.config.js           # Vite configuration with API proxy
+├── tailwind.config.js       # Tailwind CSS configuration
+└── env.example              # Environment variables template
+```
+
+## API Integration
+
+The frontend communicates with the backend through these endpoints:
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/health` | Check API health status |
+| `POST` | `/process` | Convert text to ISL |
+| `GET` | `/api/phrases` | Get available phrases |
+
+### API Service
+
+All API calls go through `src/services/api.js`:
+
+```javascript
+import { convertTextToISL, checkHealth, buildStaticUrl } from './services/api';
+
+// Convert text
+const result = await convertTextToISL("hello");
+
+// Build static URL for images/GIFs
+const imageUrl = buildStaticUrl(result.src);
+```
+
+## Development
+
+```bash
+# Run dev server with hot reload
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+
+# Lint code
+npm run lint
+```
+
+## Browser Support
+
+- Chrome/Edge (full support including speech recognition)
+- Firefox (text input only - no Web Speech API)
+- Safari (partial speech recognition support)
