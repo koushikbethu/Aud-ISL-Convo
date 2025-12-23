@@ -1,5 +1,4 @@
-# Audio to ISL Backend API Dependencies
-# Only includes packages needed for the FastAPI server
+# Audio to ISL Backend Dependencies
 
 # Web Framework
 fastapi>=0.109.0
@@ -9,11 +8,5 @@ pydantic>=2.5.0
 # Environment Configuration
 python-dotenv>=1.0.0
 
-# ===========================================
-# NOTE: The following packages are ONLY needed
-# for standalone desktop scripts (main.py, voice to text.py)
-# and are NOT required for the API server.
-# Install them separately if running desktop version:
-#
-# pip install SpeechRecognition PyAudio numpy Pillow matplotlib
-# ===========================================
+# Production Server
+gunicorn>=21.0.0
