@@ -2,3 +2,7 @@ fastapi
 uvicorn
 pydantic
 gunicorn
+flask
+gunicorn
+flask-cors
+
