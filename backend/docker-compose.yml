@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  isl-backend:
+    image: prashanth1710/isl-backend:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: isl-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8000
+      - ALLOWED_ORIGINS=http://localhost:5173,http://localhost:3000,https://aud-isl-convo-106d0tju5-koushiks-projects-460d124f.vercel.app,https://aud-isl-convo.vercel.app
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+

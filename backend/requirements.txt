@@ -8,5 +8,14 @@ pydantic>=2.5.0
 # Environment Configuration
 python-dotenv>=1.0.0
 
-# Production Server
+# Production Server (optional)
 gunicorn>=21.0.0
+
+# Speech Recognition (for standalone scripts)
+SpeechRecognition>=3.10.0
+PyAudio>=0.2.14
+
+# Image Processing (for standalone scripts)
+numpy>=1.26.0
+Pillow>=10.0.0
+matplotlib>=3.8.0

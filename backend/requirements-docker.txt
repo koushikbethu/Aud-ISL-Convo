@@ -1,0 +1,14 @@
+# Audio to ISL Backend - Docker Dependencies
+# Only includes packages needed for the FastAPI server
+
+# Web Framework
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+pydantic>=2.5.0
+
+# Environment Configuration
+python-dotenv>=1.0.0
+
+# Production Server
+gunicorn>=21.0.0
+
