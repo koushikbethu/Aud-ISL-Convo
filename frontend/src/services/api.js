@@ -3,8 +3,8 @@
  * Handles all communication with the backend API
  */
 
-// API Base URL from environment or fallback to localhost
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+// API Base URL - Azure backend deployment
+const API_BASE_URL = 'https://newbackend123-dqdsavatekb9hvek.eastasia-01.azurewebsites.net';
 
 /**
  * Custom API Error class
@@ -139,4 +139,8 @@ export default {
   buildStaticUrl,
   APIError,
 };
+
+
+
+
 
